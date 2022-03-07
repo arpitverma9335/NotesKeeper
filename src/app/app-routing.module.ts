@@ -7,10 +7,16 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    data: {
+      title: 'Your Notes',
+    },
   },
   {
-    path: 'notes',
+    path: 'add-note',
     component: NoteComponent,
+    data: {
+      title: 'Add a Note',
+    },
   },
 ];
 

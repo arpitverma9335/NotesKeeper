@@ -4,7 +4,7 @@
 >
   <div *ngFor="let note of noteList; index as i" class="px-8 py-8">
     <div [ngClass]="i % 2 === 0 ? 'even p-5' : 'p-5'">
-      <p class="text-2xl text-neutral-900 font-mono font-bold">
+      <p class="text-2xl text-neutral-900 font-mono font-bold hover:underline">
         {{ note.heading }}
       </p>
       <div class="flex justify-between">
