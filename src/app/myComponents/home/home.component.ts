@@ -46,11 +46,6 @@ export class HomeComponent extends NoteComponent {
     console.log('Contract', index);
     this.targetIndex = -1;
   }
-
-  // deleteNote(index: number) {
-  //   console.log('delete Event triggered');
-  //   this.deleteIndex.emit(index);
-  // }
 }
 
 @NgModule({

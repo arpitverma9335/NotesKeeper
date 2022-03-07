@@ -1,6 +1,7 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { Note } from 'src/app/note';
 import { NoteElementModule } from '../../myComponents/note-element/note-element.component';
+import { HomeModule } from '../home/home.component';
 
 @Component({
   selector: 'app-note',
