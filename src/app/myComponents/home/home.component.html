@@ -1,0 +1,37 @@
+<main class="mx-2 my-5 bg-slate-200 overflow-y-scroll h-110">
+  <div *ngFor="let note of noteList; index as i" class="px-8 py-8">
+    <div [ngClass]="i % 2 === 0 ? 'even p-5' : 'p-5'">
+      <p class="text-2xl text-neutral-900 font-mono font-bold">
+        {{ note.heading }}
+      </p>
+      <div class="flex justify-between">
+        <pre class="" *ngIf="targetIndex === i; else elseBlock">{{
+          note.content
+        }}</pre>
+        <ng-template #elseBlock>
+          <p class="">{{ note.content | compress }}...</p>
+        </ng-template>
+        <div class="flex space-x-2 items-center">
+          <button
+            class="rounded-xl bg-blue-900 text-white p-3"
+            (click)="expand(i)"
+          >
+            Expand
+          </button>
+          <button
+            class="rounded-xl bg-blue-900 text-white p-3"
+            (click)="contract(i)"
+          >
+            Contract
+          </button>
+          <button
+            class="rounded-xl bg-red-500 text-black p-3"
+            (click)="deleteNote(i)"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
