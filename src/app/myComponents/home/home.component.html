@@ -17,7 +17,7 @@
           {{ note.content }}
         </div>
         <ng-template #elseBlock>
-          <p class="">{{ note.content | compress }}...</p>
+          <p class="font-mono">{{ note.content | compress }}...</p>
         </ng-template>
         <div class="flex space-x-3 place-items-start">
           <button (click)="expand(i)">
