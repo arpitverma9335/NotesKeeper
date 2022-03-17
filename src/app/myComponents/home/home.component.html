@@ -5,21 +5,25 @@
   <div *ngFor="let note of noteList; index as i" class="px-8 py-8">
     <div [ngClass]="i % 2 === 0 ? 'even p-5' : 'px-5'">
       <p
-        class="text-3xl text-neutral-900 font-serif font-extrabold hover:underline py-2"
+        class="text-xl text-neutral-900 font-serif font-extrabold hover:underline py-2 md:text-3xl"
       >
         {{ note.heading }}
       </p>
       <div class="flex justify-between whitespace-pre-wrap">
         <div
-          class="font-mono w-11/12"
+          class="w-8/12 text-sm font-mono md:w-11/12 md:text-base"
           *ngIf="targetIndex === i; else elseBlock"
         >
           {{ note.content }}
         </div>
         <ng-template #elseBlock>
-          <p class="font-mono">{{ note.content | compress }}...</p>
+          <p class="w-6/12 font-mono md:w-9/12">
+            {{ note.content | compress }}...
+          </p>
         </ng-template>
-        <div class="flex space-x-3 place-items-start">
+        <div
+          class="flex flex-col space-y-3 items-center md:flex-row md:space-x-2 md:items-baseline"
+        >
           <button (click)="expand(i)">
             <img
               class="w-5"
