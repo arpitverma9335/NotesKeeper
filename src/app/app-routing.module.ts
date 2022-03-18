@@ -8,23 +8,14 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    data: {
-      title: 'Your Notes',
-    },
   },
   {
     path: 'add-note',
     component: NoteComponent,
-    data: {
-      title: 'Add a Note',
-    },
   },
   {
     path: '**',
     component: ErrorComponent,
-    data: {
-      title: '404',
-    },
   },
 ];
 
