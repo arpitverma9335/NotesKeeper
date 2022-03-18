@@ -1,17 +1,17 @@
 <main
-  class="mx-2 my-5 bg-slate-200 overflow-y-scroll h-110"
+  class="mx-auto my-5 overflow-y-scroll h-110 min-w-full"
   *ngIf="noteList.length != 0; else Empty"
 >
-  <div *ngFor="let note of noteList; index as i" class="px-8 py-8">
-    <div [ngClass]="i % 2 === 0 ? 'even p-5' : 'px-5'">
+  <div *ngFor="let note of noteList; index as i" class="px-2 py-2">
+    <div [ngClass]="i % 2 === 0 ? 'even p-5' : 'odd p-5'">
       <p
         class="text-xl text-neutral-900 font-serif font-extrabold hover:underline py-2 md:text-3xl"
       >
         {{ note.heading }}
       </p>
-      <div class="flex justify-between whitespace-pre-wrap">
+      <div class="flex flex-col justify-between whitespace-pre-wrap md:flex">
         <div
-          class="w-8/12 text-sm font-mono md:w-11/12 md:text-base"
+          class="w-11/12 text-sm font-mono md:text-base"
           *ngIf="targetIndex === i; else elseBlock"
         >
           {{ note.content }}
@@ -21,9 +21,7 @@
             {{ note.content | compress }}...
           </p>
         </ng-template>
-        <div
-          class="flex flex-col space-y-3 items-center md:flex-row md:space-x-2 md:items-baseline"
-        >
+        <div class="flex flex-row space-x-16 items-center place-content-end">
           <button (click)="expand(i)">
             <img
               class="w-5"
@@ -54,7 +52,7 @@
   </div>
 </main>
 <ng-template #Empty>
-  <div class="items-center w-110 shadow-2xl p-5 rounded-3xl mx-auto my-44">
+  <div class="items-center w-9/12 shadow-2xl p-5 rounded-3xl mx-auto my-44">
     <p class="text-neutral-900 text-center text-lg">
       No Notes Have Been saved!
     </p>

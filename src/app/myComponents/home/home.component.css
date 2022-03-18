@@ -5,3 +5,7 @@
 .even {
   background-color: aqua;
 }
+
+.odd {
+  background-color: rgba(200, 212, 204, 0.4);
+}
