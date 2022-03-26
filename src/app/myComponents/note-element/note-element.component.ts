@@ -13,6 +13,7 @@ import {
   ReactiveFormsModule,
   FormGroup,
 } from '@angular/forms';
+
 import { Note } from 'src/app/note';
 
 @Component({
@@ -21,6 +22,7 @@ import { Note } from 'src/app/note';
   styleUrls: ['./note-element.component.css'],
 })
 export class NoteElementComponent implements OnInit {
+  message!: string;
   @Output() noteAdd: EventEmitter<Note> = new EventEmitter();
   constructor() {}
   noteForm = new FormGroup({
@@ -33,6 +35,11 @@ export class NoteElementComponent implements OnInit {
       content: this.noteForm.get('content')?.value,
     };
     this.noteAdd.emit(note);
+    this.message = 'Saved Successfully';
+    this.noteForm.reset();
+  }
+  close() {
+    this.message = '';
   }
   ngOnInit(): void {}
 }
