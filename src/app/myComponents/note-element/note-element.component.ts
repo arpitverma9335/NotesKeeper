@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
@@ -5,7 +6,13 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { FormControl, FormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormsModule,
+  Validators,
+  ReactiveFormsModule,
+  FormGroup,
+} from '@angular/forms';
 import { Note } from 'src/app/note';
 
 @Component({
@@ -14,30 +21,18 @@ import { Note } from 'src/app/note';
   styleUrls: ['./note-element.component.css'],
 })
 export class NoteElementComponent implements OnInit {
-  heading!: string;
-  content!: string;
-  message!: string;
   @Output() noteAdd: EventEmitter<Note> = new EventEmitter();
   constructor() {}
+  noteForm = new FormGroup({
+    heading: new FormControl('', Validators.required),
+    content: new FormControl('', Validators.required),
+  });
   onSubmit() {
     const note = {
-      heading: this.heading,
-      content: this.content,
+      heading: this.noteForm.get('heading')?.value,
+      content: this.noteForm.get('content')?.value,
     };
-    const isheading = new FormControl(this.heading, Validators.required);
-    const isContent = new FormControl(this.content, Validators.required);
-    if (isContent.status === 'VALID') {
-      if (isheading.status === 'VALID') {
-        this.noteAdd.emit(note);
-        this.message = 'Saved Successfully';
-      } else {
-        this.message = 'Check Your Heading';
-        return;
-      }
-    } else {
-      this.message = 'Check Your Content';
-      return;
-    }
+    this.noteAdd.emit(note);
   }
   ngOnInit(): void {}
 }
@@ -45,6 +40,6 @@ export class NoteElementComponent implements OnInit {
 @NgModule({
   declarations: [NoteElementComponent],
   exports: [NoteElementComponent],
-  imports: [FormsModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
 })
 export class NoteElementModule {}

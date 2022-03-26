@@ -7,28 +7,48 @@
       <p class="text-xl font-extrabold text-purple-900 text-center underline">
         Add a Note
       </p>
-      <form class="flex flex-col space-y-5 w-full" (ngSubmit)="onSubmit()">
+      <form
+        [formGroup]="noteForm"
+        class="flex flex-col space-y-5 w-full"
+        (ngSubmit)="onSubmit()"
+      >
         <label for="heading" class="text-2xl font-serif text-purple-900"
           >Heading</label
         >
         <input
-          class="border-2 border-rose-500 rounded-lg my-5 p-5"
+          class="border-2 border-blue-500 rounded-lg my-5 p-5"
           type="text"
-          [(ngModel)]="heading"
+          formControlName="heading"
           id="heading"
           name="heading"
         />
+        <label
+          for="error"
+          *ngIf="
+            !noteForm.get('heading')?.valid && noteForm.get('heading')?.touched
+          "
+          class="font-extrabold text-red-500"
+          >*Required Field
+        </label>
         <label for="content" class="text-2xl font-serif text-purple-900"
           >Content
         </label>
         <textarea
           name="content"
-          [(ngModel)]="content"
-          class="border-2 border-rose-500 rounded-lg my-5 h-32 p-5"
+          formControlName="content"
+          class="border-2 border-blue-500 rounded-lg my-5 h-32 p-5"
         ></textarea>
-
+        <label
+          for="error"
+          *ngIf="
+            !noteForm.get('content')?.valid && noteForm.get('content')?.touched
+          "
+          class="font-extrabold text-red-500"
+          >*Required Field
+        </label>
         <button
           type="submit"
+          [disabled]="!noteForm.valid"
           class="rounded-xl bg-blue-900 w-40 mx-auto hover:bg-lime-600 text-white p-3"
         >
           Submit
@@ -37,11 +57,5 @@
     </div>
   </div>
 </main>
-<footer>
-  <div class="">
-    <p class="text-3xl text-yellow-600 text-center">
-      {{ message }}
-    </p>
-  </div>
-</footer>
+<footer></footer>
 <hr />

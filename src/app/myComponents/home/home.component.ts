@@ -34,16 +34,16 @@ export class HomeComponent extends NoteComponent {
   constructor() {
     super();
     this.noteList = this.notes;
-    console.log(this.noteList);
+    // console.log(this.noteList);
   }
 
   expand(index: number) {
-    console.log('expand', index);
+    // console.log('expand', index);
     this.targetIndex = index;
   }
 
   contract(index: number) {
-    console.log('Contract', index);
+    // console.log('Contract', index);
     this.targetIndex = -1;
   }
 }
