@@ -3,8 +3,10 @@ import {
   Component,
   EventEmitter,
   NgModule,
+  OnChanges,
   OnInit,
   Output,
+  SimpleChanges,
 } from '@angular/core';
 import {
   FormControl,
@@ -21,8 +23,8 @@ import { Note } from 'src/app/note';
   templateUrl: './note-element.component.html',
   styleUrls: ['./note-element.component.css'],
 })
-export class NoteElementComponent implements OnInit {
-  message!: string;
+export class NoteElementComponent implements OnChanges {
+  message: string = '';
   @Output() noteAdd: EventEmitter<Note> = new EventEmitter();
   constructor() {}
   noteForm = new FormGroup({
@@ -35,13 +37,14 @@ export class NoteElementComponent implements OnInit {
       content: this.noteForm.get('content')?.value,
     };
     this.noteAdd.emit(note);
-    this.message = 'Saved Successfully';
+    this.message = 'success';
     this.noteForm.reset();
   }
+
   close() {
     this.message = '';
   }
-  ngOnInit(): void {}
+  ngOnChanges(changes: SimpleChanges): void {}
 }
 
 @NgModule({
