@@ -1,13 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  EventEmitter,
-  NgModule,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, NgModule, OnChanges, SimpleChanges } from '@angular/core';
 import {
   FormControl,
   FormsModule,
@@ -16,7 +8,7 @@ import {
   FormGroup,
 } from '@angular/forms';
 
-import { Note } from 'src/app/note';
+import { NoteService } from 'src/app/note.service';
 
 @Component({
   selector: 'app-note-element',
@@ -25,8 +17,7 @@ import { Note } from 'src/app/note';
 })
 export class NoteElementComponent implements OnChanges {
   message: string = '';
-  @Output() noteAdd: EventEmitter<Note> = new EventEmitter();
-  constructor() {}
+  constructor(private noteService: NoteService) {}
   noteForm = new FormGroup({
     heading: new FormControl('', Validators.required),
     content: new FormControl('', Validators.required),
@@ -36,7 +27,7 @@ export class NoteElementComponent implements OnChanges {
       heading: this.noteForm.get('heading')?.value,
       content: this.noteForm.get('content')?.value,
     };
-    this.noteAdd.emit(note);
+    this.noteService.addNote(note);
     this.message = 'success';
     this.noteForm.reset();
   }

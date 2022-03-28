@@ -5,13 +5,13 @@
   <div *ngFor="let note of noteList; index as i" class="px-2 py-2">
     <div [ngClass]="i % 2 === 0 ? 'even p-5' : 'odd p-5'">
       <p
-        class="text-xl text-neutral-900 font-serif font-extrabold hover:underline py-2 md:text-3xl"
+        class="text-xl text-neutral-900 font-serif font-extrabold hover:text-blue-900 py-2 md:text-3xl"
       >
         {{ note.heading }}
       </p>
-      <div class="flex flex-col justify-between whitespace-pre-wrap md:flex">
+      <div class="flex flex-col justify-between md:flex">
         <div
-          class="w-11/12 text-sm font-mono md:text-base"
+          class="w-11/12 text-sm font-mono whitespace-pre-wrap md:text-base"
           *ngIf="targetIndex === i; else elseBlock"
         >
           {{ note.content }}

@@ -16,8 +16,12 @@
           >Heading</label
         >
         <input
-          class="border-2 border-blue-500 rounded-lg my-5 p-5"
           type="text"
+          [ngClass]="
+            !noteForm.get('heading')?.valid && noteForm.get('heading')?.touched
+              ? 'border-2 border-red-500 rounded-lg my-5 p-5'
+              : 'border-2 border-green-500 rounded-lg my-5 p-5'
+          "
           formControlName="heading"
           id="heading"
           name="heading"
@@ -35,7 +39,11 @@
         <textarea
           name="content"
           formControlName="content"
-          class="border-2 border-blue-500 rounded-lg my-5 h-32 p-5"
+          [ngClass]="
+            !noteForm.get('content')?.valid && noteForm.get('content')?.touched
+              ? 'border-2 border-red-500 rounded-lg my-5 h-32 p-5'
+              : 'border-2 border-green-500 rounded-lg my-5 h-32 p-5'
+          "
         ></textarea>
         <small
           *ngIf="

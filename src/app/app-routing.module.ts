@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from './myComponents/error/error.component';
 import { HomeComponent } from './myComponents/home/home.component';
-import { NoteComponent } from './myComponents/note/note.component';
+import { NoteElementComponent } from './myComponents/note-element/note-element.component';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'add-note',
-    component: NoteComponent,
+    component: NoteElementComponent,
   },
   {
     path: '**',
