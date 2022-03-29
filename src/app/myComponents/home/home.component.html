@@ -1,3 +1,12 @@
+<div class="w-auto flex flex-row mx-2 mt-2 space-x-2">
+  <input
+    type="text"
+    placeholder="Type your search term for Heading"
+    #searchBox
+    (keyup)="searchFunc(searchBox.value)"
+    class="border-2 border-blue-900 w-full rounded-lg font-mono p-2"
+  />
+</div>
 <main
   class="mx-auto my-5 overflow-y-scroll h-110 min-w-full"
   *ngIf="noteList.length != 0; else Empty"
@@ -38,7 +47,7 @@
               alt="collapse"
             />
           </button>
-          <button (click)="deleteNote(i)">
+          <button (click)="deleteNote(i)" *ngIf="!filterResult">
             <img
               src="./assets/bin.png"
               class="w-5"

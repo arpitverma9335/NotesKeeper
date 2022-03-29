@@ -24,6 +24,7 @@ export class CompressionPipe implements PipeTransform {
 export class HomeComponent implements OnInit {
   index!: number;
   targetIndex: number = -1;
+  filterResult: Boolean = false;
   noteList!: {
     heading: string;
     content: string;
@@ -33,6 +34,19 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.noteList = this.noteService.getNoteList();
+  }
+
+  searchFunc(str: string) {
+    if (str.length === 0) {
+      this.filterResult = false;
+      this.noteList = this.noteService.getNoteList();
+    } else {
+      this.filterResult = true;
+      var strRegExPattern: RegExp = new RegExp(str, 'gi');
+      this.noteList = this.noteService
+        .getNoteList()
+        .filter((note) => note.heading.match(strRegExPattern));
+    }
   }
 
   expand(index: number) {
